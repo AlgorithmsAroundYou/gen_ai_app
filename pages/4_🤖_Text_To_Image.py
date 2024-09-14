@@ -7,7 +7,9 @@ from auth_token import AuthToken
 
 import torch
 from torch import autocast
-from diffusers import StableDiffusionPipeline
+#from diffusers import StableDiffusionPipeline
+# !pip install diffusers transformers
+from diffusers import DiffusionPipeline
 
 
 #Create the app
@@ -28,17 +30,20 @@ lmain.place(x=10, y=110)
 
 print("------------------------------------------------------", torch.cuda.is_available())
 
-modelid = "CompVis/stable-diffusion-v1-4"
+model_id = "CompVis/ldm-text2im-large-256"
 device = "cuda"
-pipe = StableDiffusionPipeline.from_pretrained(modelid, revision="fp16", torch_dtype=torch.float16, use_auth_token=AuthToken)
-pipe.to(device)
+# load model and scheduler
+ldm = DiffusionPipeline.from_pretrained(model_id)
 
 def generate():
     with autocast(device):
-        image = pipe(prompt.get(), guidance_scale=8.5)["sample"][0]
-    
+        images = ldm([prompt.get()], guidance_scale=8.5).images
+        # save images
+        for idx, image in enumerate(images):
+            image.save(f"squirrel-{idx}.png")
+
     img = ImageTk.PhotoImage(image)
-    img.save('generatedimage.png')
+    #img.save('generatedimage.png')  
     lmain.configure(image=img)
 
 trigger = ctk.CTkButton(master=app, command=generate)
