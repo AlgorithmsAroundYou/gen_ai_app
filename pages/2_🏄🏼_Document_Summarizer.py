@@ -3,7 +3,7 @@
 import streamlit as st
 
 def document_summarizer() -> None:
-    st.set_page_config(page_title="Document Summarizer Demo", page_icon="📹")
+    st.set_page_config(page_title="Document Summarizer Demo", page_icon="📹", layout="wide")
     st.markdown("# Document Summarizer Demo")
     st.sidebar.header("Document Summarizer Demo")
     st.write(

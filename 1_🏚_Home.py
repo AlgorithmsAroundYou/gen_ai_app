@@ -11,6 +11,7 @@ def run():
     st.set_page_config(
         page_title="Gen AI App",
         page_icon="🏚",
+        layout="wide"
     )
 
     st.balloons()

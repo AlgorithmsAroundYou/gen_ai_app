@@ -4,7 +4,7 @@ import streamlit as st
 
 
 def talk_to_document() -> None:
-    st.set_page_config(page_title="Ask Document", page_icon="📹")
+    st.set_page_config(page_title="Ask Document", page_icon="📹", layout="wide")
     st.markdown("# Ask Document Demo")
     st.sidebar.header("Ask Document Demo")
     st.write(

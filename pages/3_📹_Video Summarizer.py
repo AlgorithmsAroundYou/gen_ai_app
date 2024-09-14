@@ -5,7 +5,6 @@ import os
 from src.video_info import GetVideo
 from src.model import Model
 from src.prompt import Prompt
-from src.misc import Misc
 from src.copy_module_edit import ModuleEditor
 from dotenv import load_dotenv
 from st_copy_to_clipboard import st_copy_to_clipboard
